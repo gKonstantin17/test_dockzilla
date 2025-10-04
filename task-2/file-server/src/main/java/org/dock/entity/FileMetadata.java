@@ -1,21 +1,21 @@
 package org.dock.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class FileMetadata {
-    private Long id;
-    private String uniqueId;
-    private String originalName;
-    private String storedName;
-    private Long size;
+    private String id;
+    private String originalFilename;
+    private String storedFilename;
+    private long size;
     private String contentType;
-    private Long userId;
-    private Long uploadedAt;
-    private Long lastDownloadedAt;
-    private Integer downloadCount;
+    private LocalDateTime uploadTime;
+    private LocalDateTime lastAccessTime;
+    private int downloadCount;
 }

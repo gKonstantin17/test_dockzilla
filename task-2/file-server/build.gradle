@@ -1,17 +1,16 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'org.dock'
 version = '1.0-SNAPSHOT'
 
+sourceCompatibility = '17'
+
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
-repositories {
-    mavenCentral()
-}
-sourceCompatibility = '17'
 
 java {
     toolchain {
@@ -19,9 +18,16 @@ java {
     }
 }
 
+application {
+    mainClass = 'org.dock.Main'
+    applicationDefaultJvmArgs = ['-Dfile.encoding=UTF-8']
+}
+
 jar {
     manifest {
-        attributes 'Main-Class': 'org.dock.Main'
+        attributes(
+                'Main-Class': 'org.dock.Main'
+        )
     }
 }
 
@@ -30,10 +36,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.36'
-    annotationProcessor 'org.projectlombok:lombok:1.18.36'
-    // SQLite
-    implementation 'org.xerial:sqlite-jdbc:3.44.1.0'
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
     // JSON
     implementation 'com.google.code.gson:gson:2.10.1'
 }

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileShare Pro | Современный обмен файлами</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <main>
+        <!-- Upload Section -->
+        <section class="upload-section">
+            <div class="upload-box">
+                <form id="uploadForm">
+                    <div class="file-input-wrapper">
+                        <input type="file" id="fileInput" required>
+                        <label for="fileInput" class="file-label">
+                            <span class="icon">📎</span>
+                            <div class="text-content">
+                                <div class="main-text" id="fileName">Выберите файл для загрузки</div>
+                                <div class="sub-text">Перетащите файл или нажмите для выбора</div>
+                            </div>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="uploadBtn">
+                        🚀 Загрузить файл
+                    </button>
+                </form>
+
+                <!-- Progress Bar -->
+                <div id="progressSection" class="progress-section hidden">
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                    <p id="progressText" class="progress-text">Загрузка...</p>
+                </div>
+
+                <!-- Result Section -->
+                <div id="resultSection" class="result-section hidden">
+                    <div class="success-message">
+                        <span class="icon">✅</span>
+                        <h3>Файл успешно загружен!</h3>
+                    </div>
+                    <div class="download-link-box">
+                        <label>Ссылка для скачивания:</label>
+                        <div class="link-input-group">
+                            <input type="text" id="downloadLink" readonly>
+                            <button class="btn btn-secondary" id="copyBtn">
+                                📋 Копировать
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn btn-tertiary" id="newUploadBtn">
+                        ➕ Загрузить еще файл
+                    </button>
+                </div>
+
+                <!-- Error Section -->
+                <div id="errorSection" class="error-section hidden">
+                    <span class="icon">❌</span>
+                    <p id="errorMessage"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <h2>📊 Статистика системы</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalFiles">0</div>
+                    <div class="stat-label">Всего файлов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalSize">0 MB</div>
+                    <div class="stat-label">Общий размер</div>
+                </div>
+            </div>
+
+            <div class="files-table-wrapper">
+                <table class="files-table" id="filesTable">
+                    <thead>
+                    <tr>
+                        <th>Имя файла</th>
+                        <th>Размер</th>
+                        <th>Загружен</th>
+                        <th>Скачиваний</th>
+                        <th>Последний доступ</th>
+                    </tr>
+                    </thead>
+                    <tbody id="filesTableBody">
+                    <tr>
+                        <td colspan="5" class="no-data">Файлы не загружены</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>🔒 Файлы автоматически удаляются через 30 дней без активности • Ваши данные в безопасности</p>
+    </footer>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
