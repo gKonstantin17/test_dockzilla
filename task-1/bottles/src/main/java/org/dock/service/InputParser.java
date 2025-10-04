@@ -3,17 +3,14 @@ package org.dock.service;
 import lombok.Data;
 import org.dock.entity.Bottle;
 import org.dock.entity.GameState;
-import org.dock.entity.Move;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class FileService {
+public class InputParser {
 
-    public GameState loadFromArray(String[][] input) {
+    public static GameState parse(String[][] input) {
         List<Bottle> bottles = new ArrayList<>();
         int capacity = input[0].length;
 
@@ -31,13 +28,4 @@ public class FileService {
         return new GameState(bottles);
     }
 
-    public void saveSolution(List<Move> solution, String filename) throws IOException {
-        try (PrintWriter writer = new PrintWriter(filename)) {
-            for (int i = 0; i < solution.size(); i++) {
-                if (i > 0 && i % 8 == 0) writer.println();
-                writer.print(solution.get(i) + " ");
-            }
-            writer.println();
-        }
-    }
 }

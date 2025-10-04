@@ -23,12 +23,7 @@ public class GameState {
 
     public boolean isSolved() {
         return bottles.stream().allMatch(bottle ->
-                bottle.isEmpty() ||
-                        (bottle.isFull() && isBottleUniform(bottle))
+                bottle.isEmpty() || bottle.isCompleted()
         );
-    }
-
-    private boolean isBottleUniform(Bottle bottle) {
-        return bottle.getLiquids().stream().distinct().count() <= 1;
     }
 }
