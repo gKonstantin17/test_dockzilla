@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        // from image
         String[][] input = {
                 {"02", "10", "04", "04"},
                 {"01", "08", "12", "08"},
@@ -27,6 +28,20 @@ public class Main {
                 {"_", "_", "_", "_"},
                 {"_", "_", "_", "_"}
         };
+        // other example
+//        String[][] input = {
+//                {"02","09","04"},
+//                {"01","08","09"},
+//                {"09","07","05"},
+//                {"05","03","01"},
+//                {"06","01","08"},
+//                {"02","02","06"},
+//                {"04","07","08"},
+//                {"04","07","05"},
+//                {"03","03","06"},
+//                {"_","_","_"},
+//                {"_","_","_"}
+//        };
 
         GameState initialState = InputParser.parse(input);
 
