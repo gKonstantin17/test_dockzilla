@@ -2,11 +2,12 @@ package org.dock.utils;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class HttpClient {
-    private static final java.net.http.HttpClient CLIENT = java.net.http.HttpClient.newHttpClient();
+public class HttpClientUtil {
+    private static final HttpClient client = HttpClient.newHttpClient();
 
     public static String get(String url) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
@@ -14,7 +15,7 @@ public class HttpClient {
                 .GET()
                 .build();
 
-        HttpResponse<String> response = CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         return response.body();
     }
 }

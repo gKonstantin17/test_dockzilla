@@ -2,7 +2,6 @@ package org.dock.service;
 
 public class ChartService {
     public String generateTemperatureChart(String[] labels, double[] temperatures) {
-        // Подготовка данных для Chart.js
         StringBuilder labelsJson = new StringBuilder("[");
         StringBuilder dataJson = new StringBuilder("[");
 
@@ -19,27 +18,49 @@ public class ChartService {
         labelsJson.append("]");
         dataJson.append("]");
 
-        // Создание HTML с Canvas и скриптом Chart.js
         return "<canvas id=\"temperatureChart\"></canvas>\n" +
                 "<script>\n" +
                 "    const ctx = document.getElementById('temperatureChart');\n" +
                 "    new Chart(ctx, {\n" +
                 "        type: 'line',\n" +
                 "        data: {\n" +
-                "            labels: " + labelsJson.toString() + ",\n" +
+                "            labels: " + labelsJson + ",\n" +
                 "            datasets: [{\n" +
                 "                label: 'Temperature (°C)',\n" +
-                "                data: " + dataJson.toString() + ",\n" +
+                "                data: " + dataJson + ",\n" +
                 "                borderColor: 'rgb(75, 192, 192)',\n" +
-                "                tension: 0.1\n" +
+                "                backgroundColor: 'rgba(75, 192, 192, 0.1)',\n" +
+                "                tension: 0.4,\n" +
+                "                fill: true\n" +
                 "            }]\n" +
                 "        },\n" +
                 "        options: {\n" +
                 "            responsive: true,\n" +
+                "            maintainAspectRatio: false,\n" +
                 "            plugins: {\n" +
                 "                title: {\n" +
                 "                    display: true,\n" +
-                "                    text: '24-Hour Temperature Forecast'\n" +
+                "                    text: '24-Hour Temperature Forecast',\n" +
+                "                    font: { size: 16 }\n" +
+                "                },\n" +
+                "                legend: {\n" +
+                "                    display: true,\n" +
+                "                    position: 'top'\n" +
+                "                }\n" +
+                "            },\n" +
+                "            scales: {\n" +
+                "                y: {\n" +
+                "                    beginAtZero: false,\n" +
+                "                    title: {\n" +
+                "                        display: true,\n" +
+                "                        text: 'Temperature (°C)'\n" +
+                "                    }\n" +
+                "                },\n" +
+                "                x: {\n" +
+                "                    title: {\n" +
+                "                        display: true,\n" +
+                "                        text: 'Time'\n" +
+                "                    }\n" +
                 "                }\n" +
                 "            }\n" +
                 "        }\n" +

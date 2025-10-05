@@ -7,6 +7,7 @@ import org.dock.service.WeatherService;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +28,7 @@ public class WeatherController implements HttpHandler {
 
                 String weatherData = weatherService.getWeatherData(city);
 
-                exchange.getResponseHeaders().set("Content-Type", "text/html");
+                exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
                 sendResponse(exchange, 200, weatherData);
             } else {
                 sendResponse(exchange, 405, "Method Not Allowed");
@@ -41,9 +42,10 @@ public class WeatherController implements HttpHandler {
     }
 
     private void sendResponse(HttpExchange exchange, int statusCode, String response) throws IOException {
-        exchange.sendResponseHeaders(statusCode, response.length());
+        byte[] responseBytes = response.getBytes(StandardCharsets.UTF_8);
+        exchange.sendResponseHeaders(statusCode, responseBytes.length);
         OutputStream os = exchange.getResponseBody();
-        os.write(response.getBytes());
+        os.write(responseBytes);
         os.close();
     }
 

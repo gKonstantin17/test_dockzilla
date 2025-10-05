@@ -3,7 +3,7 @@ package org.dock.service;
 import com.google.gson.Gson;
 import org.dock.entity.GeocodingResponse;
 import org.dock.entity.LocationData;
-import org.dock.utils.HttpClient;
+import org.dock.utils.HttpClientUtil;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -17,7 +17,7 @@ public class GeocodingService {
         String encodedCity = URLEncoder.encode(city, StandardCharsets.UTF_8);
         String url = GEOCODING_API_URL + encodedCity;
 
-        String response = HttpClient.get(url);
+        String response = HttpClientUtil.get(url);
         GeocodingResponse geocodingResponse = gson.fromJson(response, GeocodingResponse.class);
 
         if (geocodingResponse.getResults() == null || geocodingResponse.getResults().isEmpty()) {
